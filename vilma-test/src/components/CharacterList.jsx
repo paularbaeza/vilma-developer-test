@@ -1,8 +1,6 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import { useNavigate, Link } from "react-router-dom";
-import CharacterDetails from "../pages/CharacterDetails";
-
 
 
 
@@ -38,13 +36,12 @@ function CharactersList() {
     return <h3>...Loading</h3>
 }
 
-//console.log(charactersList)
   return (
-    <div>
+    <div id="characters-list">
     {charactersList.map((eachCharacter) => {
       return (
-        <div key={eachCharacter.name}>
-        <Link to={`/${eachCharacter.name}/details`}>{eachCharacter.name}</Link>
+        <div id="each-character" key={eachCharacter.name}>
+        <Link to={`/${eachCharacter.name}/details`} className="no-deco">{eachCharacter.name}</Link>
         
         </div>
         

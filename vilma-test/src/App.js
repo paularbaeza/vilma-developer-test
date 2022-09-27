@@ -1,28 +1,29 @@
-import './App.css';
-import NavBar from './components/NavBar';
-import {Routes} from "react-router-dom"
-import {Route} from "react-router-dom"
-import CharactersList from './components/CharacterList';
-import Error from './pages/Error';
-import NotFound from './pages/NotFound';
-import CharacterDetails from './pages/CharacterDetails';
+import "./App.css";
+import NavBar from "./components/NavBar";
+import { Routes } from "react-router-dom";
+import { Route } from "react-router-dom";
+import CharactersList from "./components/CharacterList";
+import Error from "./pages/Error";
+import NotFound from "./pages/NotFound";
+import CharacterDetails from "./pages/CharacterDetails";
 
 function App() {
   return (
     <div className="App">
       <div>
-        <NavBar/>
-        <CharactersList/>
+          <NavBar />
+        <div >
+          <CharactersList />
+        </div>
       </div>
       <div>
-      <Routes>
-        <Route path="/:name/details" element={<CharacterDetails />} />
+        <Routes>
+          <Route path="/:name/details" element={<CharacterDetails />} />
 
-
-        {/* componentes para error handling */}
-        <Route path="/error" element={<Error />} />
-        <Route path="/*" element={<NotFound />} />
-      </Routes>
+          {/* componentes para error handling */}
+          <Route path="/error" element={<Error />} />
+          <Route path="/*" element={<NotFound />} />
+        </Routes>
       </div>
     </div>
   );
