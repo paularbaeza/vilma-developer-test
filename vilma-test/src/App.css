@@ -3,17 +3,15 @@
     flex-direction: row;
     flex-wrap: wrap;
     min-height: 100vh;
+    height: 100%;
+    background-color: rgb(240, 241, 227);
   }
 
-#nav-bar{
+   #nav-bar{
     background-color: #DEE346;
     height:40px;
-    display:flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
     width:100vw;
-}
+} 
 
 #search{
     display:flex;
@@ -41,6 +39,7 @@
 #list-details{
     display:flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 
@@ -64,4 +63,6 @@
     width: max-content;
     padding:5px 15px;
     border-radius: 15px;
+    box-shadow: 2px 2px 5px 2px #888888;
+    margin:100px
 }

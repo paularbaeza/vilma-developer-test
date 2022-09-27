@@ -8,7 +8,18 @@ function CharactersList() {
   
   const [charactersList, setCharactersList] = useState ([])
   const [isFetching, setIsFetching] = useState (true)
+  const [search,setSearch] = useState("")
+    
 
+  const handleSearch = (event) => {
+  
+      let inputSearchValue=event.target.value
+      console.log(event.target.value)
+      setSearch(inputSearchValue)
+      
+      //buscamos, filtramos
+      //llevamos el valor del estado buscar a Shopping list
+  }
 
   const navigate = useNavigate();
 
@@ -38,6 +49,10 @@ function CharactersList() {
 
   return (
     <div id="characters-list">
+          <div id="search">
+        <input type="text" name="search" onChange={handleSearch} value={search}/>
+        <button>Search</button>
+      </div>
     {charactersList.map((eachCharacter) => {
       return (
         <div id="each-character" key={eachCharacter.name}>
