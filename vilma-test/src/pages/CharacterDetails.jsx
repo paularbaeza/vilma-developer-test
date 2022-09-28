@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate, Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function CharacterDetails() {
   const { name } = useParams();
@@ -10,10 +10,13 @@ function CharacterDetails() {
 
   const navigate = useNavigate();
 
+
+  //useEffect calling the getCharactersDetails function when the component mounts and update it every time the name changes (params)
   useEffect(() => {
     getCharactersDetails();
   }, [name]);
 
+  //get the character details from the API
   const getCharactersDetails = async () => {
     try {
       const response = await axios.get(
@@ -26,13 +29,11 @@ function CharacterDetails() {
     }
   };
 
-  //manejo de la seccion de loading
+  // loading
   if (isFetching === true) {
-    //si el componente está buscando data
-    return <h3>...Loading</h3>;
+    return <h3>...Loading character's details</h3>;
   }
 
-  console.log(characterDetails);
   return (
     <div id="list-details">
       <div id="character-details">

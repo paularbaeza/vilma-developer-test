@@ -4,20 +4,23 @@ import { useNavigate, Link } from "react-router-dom";
 
 function CharactersList() {
   const [charactersList, setCharactersList] = useState([]);
-  const [isFetching, setIsFetching] = useState(true);
   const [search, setSearch] = useState("");
-  const [page, setPage] = useState (1)
+  const [page, setPage] = useState(1);
+  const [isFetching, setIsFetching] = useState(true);
 
   const navigate = useNavigate();
 
+  //useEffect calling the getCharacterList function when the component mounts and update it every time the page state changes
   useEffect(() => {
     getCharactersList();
   }, [page]);
 
+  // get the characters list from de API
   const getCharactersList = async () => {
     try {
-      const response = await axios.get(`https://swapi.dev/api/people/?page=${page}`);
-      console.log(response.data.results)
+      const response = await axios.get(
+        `https://swapi.dev/api/people/?page=${page}`
+      );
       setCharactersList(response.data.results);
       setIsFetching(false);
     } catch {
@@ -25,39 +28,39 @@ function CharactersList() {
     }
   };
 
+  //change the search state to what the user is looking for
   const handleSearch = (event) => {
-    console.log(event.target.value);
     setSearch(event.target.value);
-
   };
 
+  //filter the list in order to only show the results of the search
   const handleSearchResults = async () => {
     try {
       const response = await axios.get(
         `https://swapi.dev/api/people?search=${search}`
       );
       setCharactersList(response.data.results);
-      setSearch("")
+      setSearch(""); //clean the search input once its submitted
     } catch {
       navigate("/error");
     }
   };
 
+  //change the page state in order to change the call to the API and get the next 10 characters
   const handleNextPage = () => {
-    let nextPage = page + 1 
-setPage(nextPage)
-  }
+    let nextPage = page + 1;
+    setPage(nextPage);
+  };
 
+  //change the page state in order to change the call to the API and get the previous 10 characters
   const handlePreviousPage = () => {
-    let previousPage = page - 1
-    setPage (previousPage)
-  }
+    let previousPage = page - 1;
+    setPage(previousPage);
+  };
 
-  console.log (page)
-  //manejo de la seccion de loading
+  //loading
   if (isFetching === true) {
-    //si el componente está buscando data
-    return <h3>...Loading</h3>;
+    return <h3>...Loading list of characters</h3>;
   }
 
   return (
@@ -81,8 +84,12 @@ setPage(nextPage)
         );
       })}
 
-      <button onClick = {handlePreviousPage} className="list-btn">Previous page</button>
-      <button onClick = {handleNextPage} className="list-btn">Next page</button>
+      <button onClick={handlePreviousPage} className="list-btn">
+        Previous page
+      </button>
+      <button onClick={handleNextPage} className="list-btn">
+        Next page
+      </button>
     </div>
   );
 }
