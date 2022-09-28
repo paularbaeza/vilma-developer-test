@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
 
 function Error() {
   return (
-    <div>Error</div>
-  )
+    <div className="error-notfound">
+      <h1>Sorry, there was un unexpected error.</h1>
+      <h2>Go back and try again.</h2>
+    </div>
+  );
 }
 
-export default Error
+export default Error;

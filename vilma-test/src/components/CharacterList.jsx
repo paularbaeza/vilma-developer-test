@@ -28,6 +28,7 @@ function CharactersList() {
   const handleSearch = (event) => {
     console.log(event.target.value);
     setSearch(event.target.value);
+
   };
 
   const handleSearchResults = async () => {
@@ -36,6 +37,7 @@ function CharactersList() {
         `https://swapi.dev/api/people?search=${search}`
       );
       setCharactersList(response.data.results);
+      setSearch("")
     } catch {
       navigate("/error");
     }
@@ -79,8 +81,8 @@ setPage(nextPage)
         );
       })}
 
-      <button onClick = {handlePreviousPage}>Previous page</button>
-      <button onClick = {handleNextPage}>Next page</button>
+      <button onClick = {handlePreviousPage} className="list-btn">Previous page</button>
+      <button onClick = {handleNextPage} className="list-btn">Next page</button>
     </div>
   );
 }
