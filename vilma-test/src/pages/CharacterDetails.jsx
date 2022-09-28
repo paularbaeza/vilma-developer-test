@@ -7,51 +7,24 @@ function CharacterDetails() {
 
   const [characterDetails, setCharactersDetails] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
-  const [charactersList, setCharactersList] = useState([]);
-  const [search, setSearch] =useState ("")
 
   const navigate = useNavigate();
 
   useEffect(() => {
     getCharactersDetails();
-    getCharactersList();
   }, [name]);
 
-  const getCharactersList = async () => {
-    try {
-      const response = await axios.get("https://swapi.dev/api/people");
-      setCharactersList(response.data.results);
-      setIsFetching(false);
-    } catch {
-      navigate("/error");
-    }
-  };
   const getCharactersDetails = async () => {
     try {
       const response = await axios.get(
         `https://swapi.dev/api/people?search=${name}`
       );
       setCharactersDetails(response.data.results[0]);
+      setIsFetching(false)
     } catch {
       navigate("/error");
     }
   };
-
-const handleSearch = (event) => {
-  console.log(event.target.value)
-setSearch(event.target.value)
-}
-
-const handleSearchResults = async () => {
-  try {
-    const response = await axios.get(
-      `https://swapi.dev/api/people?search=${search}`
-    );
-    setCharactersList(response.data.results);
-  } catch {
-    navigate("/error");
-  }
-}
 
   //manejo de la seccion de loading
   if (isFetching === true) {
@@ -62,21 +35,6 @@ const handleSearchResults = async () => {
   console.log(characterDetails);
   return (
     <div id="list-details">
-      <div id="characters-list">
-        <div id="search">
-          <input type="text" name="search" value= {search} onChange={handleSearch}/>
-          <button onClick={handleSearchResults}>Search</button>
-        </div>
-        {charactersList.map((eachCharacter) => {
-          return (
-            <div id="each-character" key={eachCharacter.name}>
-              <Link to={`/${eachCharacter.name}/details`} className="no-deco">
-                {eachCharacter.name}
-              </Link>
-            </div>
-          );
-        })}
-      </div>
       <div id="character-details">
         <h1>{characterDetails.name}</h1>
         <p>

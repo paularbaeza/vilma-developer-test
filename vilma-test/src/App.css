@@ -7,7 +7,7 @@
     background-color: rgb(240, 241, 227);
   }
 
-   #nav-bar{
+#nav-bar{
     background-color: #DEE346;
     height:40px;
     width:100vw;
@@ -49,9 +49,9 @@
     
 }
 
-#characters-list{
+/* #characters-list{
     text-align: center;
-}
+} */
 
 .no-deco{
     text-decoration: none;
